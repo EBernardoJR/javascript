@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            flex: 1;
+            height: 100vh;
+            background-color: rgb(99, 99, 99);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            width: 80%;
+            max-width: 400px;
+            height: 400px;
+            background-color: rgb(43, 43, 43);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            color: #fff;
+            flex-direction: column;
+            border: 5px #ccc solid;
+            box-shadow: rgb(39, 39, 39) 5px 5px 4px;
+            
+        }
+
+        .container div {
+            border-radius: 10px;
+        }
+
+        .hour-value {
+            margin-top: 10px;
+            width: 200px;
+            height: 10px;
+            background-color: #ccc;
+        }
+        .hour-value div {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(124, 7, 148);
+        }
+        .minute {
+            margin-top: 10px;
+            width: 180px;
+            height: 9px;
+            background-color: #ccc;
+        }
+        .minute div {
+
+            width: 100%;
+            height: 100%;
+            background-color: rgb(129, 40, 231);
+        }
+
+        .second {
+            margin-top: 10px;
+            width: 160px;
+            height: 8px;
+            background-color: #ccc;
+        }
+
+        .second div {
+            height: 100%;
+            width: 100%;
+            background-color: rgb(152, 93, 207);
+        }
+
+    </style>
+    <title>Relógio</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="hour" id="hour"></div>
+        <div class="hour-value">
+            <div id="hour-value"></div>
+        </div>
+        <div class="minute">
+            <div id="minute-value"></div>
+        </div>
+        <div class="second">
+            <div id="second-value"></div>
+        </div>
+    </div>
+    <script>
+        var hour = window.document.getElementById('hour')
+        var hourValue = window.document.getElementById('hour-value')
+        var minuteValue = window.document.getElementById('minute-value')
+        var secondValue = window.document.getElementById('second-value')
+
+        function setHour(){
+            
+            var date = new Date()
+            var clock = {
+            hour: date.getHours(),
+            minute: date.getMinutes(),
+            seconds: date.getSeconds()
+            }
+            hour.innerHTML = `${clock.hour}:${clock.minute}:${clock.seconds}`
+
+            var newHour = (clock.hour / 24) * 100
+            var newMinute = (clock.minute / 60) * 100
+            var newSecond = (clock.seconds / 60) * 100
+
+            hourValue.style.width = `${newHour}%`
+            minuteValue.style.width = `${newMinute}%`
+            secondValue.style.width = `${newSecond}%`
+        }
+        setInterval(setHour, 1000)
+
+
+    </script>
+</body>
+</html>
