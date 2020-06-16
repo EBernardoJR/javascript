@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
     <style>
         body {
             flex: 1;
             height: 100vh;
-            background-color: rgb(99, 99, 99);
+            background-color: rgb(163, 85, 226);
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'Noto Sans JP', sans-serif;
         }
         .container {
             width: 80%;
@@ -76,7 +78,7 @@
 <body>
     
     <div class="container">
-        <div class="hour" id="hour"></div>
+        <div class="hour" id="hour">00:00:00</div>
         <div class="hour-value">
             <div id="hour-value"></div>
         </div>
@@ -88,12 +90,17 @@
         </div>
     </div>
     <script>
+
+        console.log(window.navigator)
+
         var hour = window.document.getElementById('hour')
         var hourValue = window.document.getElementById('hour-value')
         var minuteValue = window.document.getElementById('minute-value')
         var secondValue = window.document.getElementById('second-value')
 
         function setHour(){
+
+
             
             var date = new Date()
             var clock = {
@@ -101,7 +108,15 @@
             minute: date.getMinutes(),
             seconds: date.getSeconds()
             }
-            hour.innerHTML = `${clock.hour}:${clock.minute}:${clock.seconds}`
+
+            function fixed(number){
+                if(number < 10){
+                    return '0'+ number
+                }
+                else return number
+            }
+
+            hour.innerHTML = `${fixed(clock.hour)}:${fixed(clock.minute)}:${fixed(clock.seconds)}`
 
             var newHour = (clock.hour / 24) * 100
             var newMinute = (clock.minute / 60) * 100
